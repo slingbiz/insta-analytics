@@ -1,3 +1,15 @@
+export function formatCompact(n: number): string {
+  if (n >= 1_000_000) {
+    const val = n / 1_000_000
+    return val % 1 === 0 ? `${val}M` : `${val.toFixed(1)}M`
+  }
+  if (n >= 1_000) {
+    const val = n / 1_000
+    return val % 1 === 0 ? `${val}K` : `${val.toFixed(1)}K`
+  }
+  return n.toLocaleString('en-US')
+}
+
 export function formatNumber(n: number): string {
   if (n >= 1_000_000) {
     const val = n / 1_000_000

@@ -35,9 +35,18 @@ export interface OverviewMetrics {
   periodLabel: string
 }
 
+export interface DashboardInsights {
+  views: number
+  interactions: number
+  newFollowers: number
+  contentShared: number
+  dateRange: string
+}
+
 export interface AnalyticsState {
   profile: ProfileStats
   overview: OverviewMetrics
+  insights: DashboardInsights
   recentPosts: PostAnalytics[]
   recentStories: PostAnalytics[]
   recentReels: PostAnalytics[]

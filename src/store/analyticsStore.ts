@@ -1,11 +1,12 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { defaultAnalytics } from '../data/defaultAnalytics'
-import type { AnalyticsState, PostAnalytics, ProfileStats, OverviewMetrics } from '../types/analytics'
+import type { AnalyticsState, PostAnalytics, ProfileStats, OverviewMetrics, DashboardInsights } from '../types/analytics'
 
 interface AnalyticsStore extends AnalyticsState {
   setProfile: (profile: Partial<ProfileStats>) => void
   setOverview: (overview: Partial<OverviewMetrics>) => void
+  setInsights: (insights: Partial<DashboardInsights>) => void
   setRecentPosts: (posts: PostAnalytics[]) => void
   setRecentStories: (stories: PostAnalytics[]) => void
   setRecentReels: (reels: PostAnalytics[]) => void
@@ -24,6 +25,9 @@ export const useAnalyticsStore = create<AnalyticsStore>()(
 
       setOverview: (overview) =>
         set((state) => ({ overview: { ...state.overview, ...overview } })),
+
+      setInsights: (insights) =>
+        set((state) => ({ insights: { ...state.insights, ...insights } })),
 
       setRecentPosts: (posts) => set({ recentPosts: posts }),
 

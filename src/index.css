@@ -7,10 +7,12 @@
   --color-ig-secondary: #737373;
   --color-ig-border: #dbdbdb;
   --color-ig-blue: #0095f6;
-  --color-ig-green: #00a400;
+  --color-ig-green: #4cd964;
   --color-ig-red: #ed4956;
   --color-ig-surface: #fafafa;
   --color-ig-chart: #262626;
+  --color-ig-dark-bg: #000000;
+  --color-ig-dark-secondary: #a8a8a8;
 }
 
 * {
@@ -27,7 +29,7 @@ body,
 
 body {
   font-family: var(--font-sans);
-  background: #f0f0f0;
+  background: #1a1a1a;
   color: var(--color-ig-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

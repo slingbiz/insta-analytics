@@ -20,6 +20,13 @@ export const defaultAnalytics: AnalyticsState = {
     websiteClicksChange: 15.0,
     periodLabel: 'Last 30 days',
   },
+  insights: {
+    views: 60500,
+    interactions: 956,
+    newFollowers: 3300,
+    contentShared: 99,
+    dateRange: 'May 28 - Jun 26',
+  },
   recentPosts: [
     {
       id: 'post-1',

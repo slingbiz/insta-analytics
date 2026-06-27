@@ -5,7 +5,7 @@ import type { PostAnalytics } from '../../types/analytics'
 
 export function Dashboard() {
   const store = useAnalyticsStore()
-  const [activeTab, setActiveTab] = useState<'profile' | 'overview' | 'posts' | 'stories' | 'reels'>('profile')
+  const [activeTab, setActiveTab] = useState<'insights' | 'profile' | 'overview' | 'posts' | 'stories' | 'reels'>('insights')
 
   return (
     <div className="min-h-full bg-gray-100">
@@ -33,7 +33,7 @@ export function Dashboard() {
 
       <div className="max-w-5xl mx-auto p-6">
         <div className="flex gap-2 mb-6 flex-wrap">
-          {(['profile', 'overview', 'posts', 'stories', 'reels'] as const).map((tab) => (
+          {(['insights', 'profile', 'overview', 'posts', 'stories', 'reels'] as const).map((tab) => (
             <button
               key={tab}
               type="button"
@@ -47,12 +47,31 @@ export function Dashboard() {
           ))}
         </div>
 
+        {activeTab === 'insights' && <InsightsEditor />}
         {activeTab === 'profile' && <ProfileEditor />}
         {activeTab === 'overview' && <OverviewEditor />}
         {activeTab === 'posts' && <ContentEditor type="posts" />}
         {activeTab === 'stories' && <ContentEditor type="stories" />}
         {activeTab === 'reels' && <ContentEditor type="reels" />}
       </div>
+    </div>
+  )
+}
+
+function InsightsEditor() {
+  const { insights, setInsights } = useAnalyticsStore()
+
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
+      <h2 className="font-semibold text-lg">Professional dashboard — Insights</h2>
+      <Field label="Date range" value={insights.dateRange} onChange={(v) => setInsights({ dateRange: v })} />
+      <NumberField label="Views" value={insights.views} onChange={(v) => setInsights({ views: v })} />
+      <NumberField label="Interactions" value={insights.interactions} onChange={(v) => setInsights({ interactions: v })} />
+      <NumberField label="New followers" value={insights.newFollowers} onChange={(v) => setInsights({ newFollowers: v })} />
+      <NumberField label="Content you shared" value={insights.contentShared} onChange={(v) => setInsights({ contentShared: v })} />
+      <p className="text-sm text-gray-500 pt-2">
+        Preview values: {insights.views.toLocaleString()} views → displayed as compact number on the analytics screen.
+      </p>
     </div>
   )
 }
