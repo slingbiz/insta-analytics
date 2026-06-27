@@ -46,6 +46,13 @@ export const useAnalyticsStore = create<AnalyticsStore>()(
 
       importState: (state) => set(state),
     }),
-    { name: 'insta-analytics-store' },
+    { name: 'insta-analytics-store', version: 1, migrate: (persisted: unknown) => {
+      const state = persisted as Partial<AnalyticsState> | undefined
+      return {
+        ...defaultAnalytics,
+        ...state,
+        insights: { ...defaultAnalytics.insights, ...state?.insights },
+      }
+    }},
   ),
 )

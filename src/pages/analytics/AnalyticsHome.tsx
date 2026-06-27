@@ -20,7 +20,7 @@ import {
 } from '../../components/icons/DashboardIcons'
 
 export function AnalyticsHome() {
-  const { insights } = useAnalyticsStore()
+  const insights = useAnalyticsStore((s) => s.insights) ?? defaultAnalytics.insights
 
   return (
     <PhoneFrame dark>
@@ -145,7 +145,7 @@ function ToolRow({
       </div>
       <span className="flex items-center gap-[8px] shrink-0">
         {badge && (
-          <span className="bg-[#0095f6] text-white text-[11px] font-semibold px-[7px] py-[3px] rounded-[4px] leading-none tracking-[0.1px]">
+          <span className="bg-[#0095f6] text-white text-[11px] font-semibold px-[8px] py-[2px] rounded-full leading-none">
             {badge}
           </span>
         )}
